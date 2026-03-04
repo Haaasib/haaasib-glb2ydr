@@ -19,10 +19,10 @@ https://youtu.be/TCPPDGbIWh0
 If the export fails, open **Blender** and follow these steps:
 
 1. Go to this panel:  
-   https://r2.fivemanage.com/ctqjlicI2ZX3DV1y4jRyb/Screenshot_1.png
+   ![Haaasib 3D](https://r2.fivemanage.com/ctqjlicI2ZX3DV1y4jRyb/Screenshot_1.png)
 
 2. Click on:  
-   https://r2.fivemanage.com/ctqjlicI2ZX3DV1y4jRyb/Screenshot_2026-03-04_134026.png
+   ![Haaasib 3D](https://r2.fivemanage.com/ctqjlicI2ZX3DV1y4jRyb/Screenshot_2026-03-04_134026.png)
 
 3. Find **MatCombiner** and click **Install Pillow**.
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Haaasib 3D Model Converter</title>
@@ -22,7 +23,35 @@
       --error: #f97373;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0 }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    @keyframes gradientBG {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .btn-loading {
+      background: linear-gradient(-45deg, var(--accent), #1c5bba, var(--accent), #1c5bba) !important;
+      background-size: 400% 400% !important;
+      animation: gradientBG 1.5s ease infinite;
+      color: white !important;
+      cursor: not-allowed;
+      border: none !important;
+    }
+
     body {
       font-family: "Chakra Petch", sans-serif;
       background: var(--bg);
@@ -70,7 +99,10 @@
       box-shadow: 0 8px 30px rgba(10, 132, 255, .35);
     }
 
-    .btn-primary:hover { transform: translateY(-2px) }
+    .btn-primary:hover {
+      transform: translateY(-2px)
+    }
+
     .btn-primary:disabled {
       background: #1c1c1f;
       color: var(--muted);
@@ -130,7 +162,7 @@
       margin: 30px;
       opacity: 0;
       transition: .2s;
-      background: rgba(0,0,0,0.5);
+      background: rgba(0, 0, 0, 0.5);
       z-index: 10;
     }
 
@@ -179,7 +211,7 @@
       background: #2a2a2e;
       color: white;
     }
-    
+
     .viewer-controls button.active {
       background: var(--accent-soft);
       color: var(--accent);
@@ -228,7 +260,7 @@
       align-items: center;
       gap: 6px;
     }
-    
+
     .data-row span:last-child {
       font-weight: 600;
     }
@@ -247,7 +279,7 @@
       border: 1px solid var(--border);
       pointer-events: auto;
       z-index: 5;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     }
 
     .scale-controls {
@@ -294,8 +326,13 @@
       background: var(--panel);
     }
 
-    .ok { color: var(--success) }
-    .error { color: var(--error) }
+    .ok {
+      color: var(--success)
+    }
+
+    .error {
+      color: var(--error)
+    }
 
     #settingsPanel input[type="text"] {
       min-width: 260px;
@@ -323,14 +360,17 @@
         flex-direction: column;
         gap: 16px;
       }
+
       .info-panel {
         width: 100%;
       }
+
       .action-area {
         width: 90%;
         bottom: 20px;
         flex-direction: column;
       }
+
       .action-area .btn {
         width: 100%;
       }
@@ -340,136 +380,133 @@
 
 <body>
 
-<header>
-  <div class="flex items-center gap-3">
-    <img src="https://forum.cfx.re/user_avatar/forum.cfx.re/_hasib/144/4592018_2.png" alt="Logo" class="w-8 h-8 border border-[var(--border)]">
-    <h1 class="font-bold">Haaasib <span class="text-blue-200">3D</span> Converter</h1>
-  </div>
-  <div class="flex items-center gap-4 text-sm text-[var(--muted)]">
- 
-    <a href="https://tebex.haaasib.dev/" target="_blank" rel="noopener noreferrer" class="text-white hover:text-white font-semibold">
-     Love this simple tool? Visit my <span class="text-blue-200">tebex.haaasib.dev</span> 
-    </a>
-    <a href="https://discord.com/invite/9m2KTFskjx" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-blue-400 hover:text-blue-300">
-      <img src="https://static.vecteezy.com/system/resources/previews/006/892/625/non_2x/discord-logo-icon-editorial-free-vector.jpg"
-           alt="Discord"
-           class="w-10 h-10 object-cover">
-    </a>
-    <button
-      id="settingsBtn"
-      class="flex items-center gap-1 px-3 py-1 border border-[var(--border)] bg-[#1c1c1f] text-xs text-white hover:bg-[#232329] transition"
-      type="button"
-    >
-      <i data-lucide="settings" class="w-4 h-4"></i>
-      Settings
+  <header>
+    <div class="flex items-center gap-3">
+      <img src="https://forum.cfx.re/user_avatar/forum.cfx.re/_hasib/144/4592018_2.png" alt="Logo"
+        class="w-8 h-8 border border-[var(--border)]">
+      <h1 class="font-bold">Haaasib <span class="text-blue-200">3D</span> Converter</h1>
+    </div>
+    <div class="flex items-center gap-4 text-sm text-[var(--muted)]">
+
+      <a href="https://tebex.haaasib.dev/" target="_blank" rel="noopener noreferrer"
+        class="text-white hover:text-white font-semibold">
+        Love this simple tool? Visit my <span class="text-blue-200">tebex.haaasib.dev</span>
+      </a>
+      <a href="https://discord.com/invite/9m2KTFskjx" target="_blank" rel="noopener noreferrer"
+        class="flex items-center gap-1 text-blue-400 hover:text-blue-300">
+        <img
+          src="https://static.vecteezy.com/system/resources/previews/006/892/625/non_2x/discord-logo-icon-editorial-free-vector.jpg"
+          alt="Discord" class="w-10 h-10 object-cover">
+      </a>
+      <button id="settingsBtn"
+        class="flex items-center gap-1 px-3 py-1 border border-[var(--border)] bg-[#1c1c1f] text-xs text-white hover:bg-[#232329] transition"
+        type="button">
+        <i data-lucide="settings" class="w-4 h-4"></i>
+        Settings
+      </button>
+    </div>
+  </header>
+
+  <div id="settingsPanel" class="hidden px-6 py-3 flex items-center gap-3 text-sm">
+    <label for="blenderPathInput" class="text-[var(--muted)] whitespace-nowrap">
+      Blender path:
+    </label>
+    <input id="blenderPathInput" type="text" placeholder="C:\Program Files\Blender Foundation\Blender 4.5\blender.exe">
+    <button id="saveBlenderPathBtn" class="btn btn-primary" type="button">
+      Save
     </button>
+    <span id="blenderPathStatus" class="text-[var(--muted)] text-xs"></span>
   </div>
-</header>
 
-<div id="settingsPanel" class="hidden px-6 py-3 flex items-center gap-3 text-sm">
-  <label for="blenderPathInput" class="text-[var(--muted)] whitespace-nowrap">
-    Blender path:
-  </label>
-  <input
-    id="blenderPathInput"
-    type="text"
-    placeholder="C:\Program Files\Blender Foundation\Blender 4.5\blender.exe"
-  >
-  <button id="saveBlenderPathBtn" class="btn btn-primary" type="button">
-    Save
-  </button>
-  <span id="blenderPathStatus" class="text-[var(--muted)] text-xs"></span>
-</div>
-
-<main>
-  <section id="viewer-container">
-    <div id="viewer"></div>
-    <div class="drop-overlay" id="dropOverlay">
-      <div class="flex flex-col items-center gap-4 bg-[#1c1c1f] p-8 border border-[var(--border)] shadow-2xl">
-        <i data-lucide="upload-cloud" class="w-12 h-12 text-blue-500"></i>
-        <span>Drop GLB/GLTF File Here</span>
-      </div>
-    </div>
-
-    <div class="overlay-controls">
-      <div class="viewer-controls">
-        <button id="gridBtn" title="Toggle Grid"><i data-lucide="grid"></i></button>
-        <button id="wireBtn" title="Wireframe Mode"><i data-lucide="box"></i></button>
-        <button id="rotateBtn" title="Auto Rotate"><i data-lucide="rotate-cw"></i></button>
-        <button id="resetBtn" title="Reset Camera"><i data-lucide="focus"></i></button>
-        <button id="bgBtn" title="Toggle Background"><i data-lucide="moon"></i></button>
-      </div>
-
-      <div class="info-panel">
-        <div class="data-row">
-          <span><i data-lucide="file" class="w-4 h-4"></i> File</span>
-          <span id="fileName" class="truncate max-w-[120px]" title="No file">No file</span>
-        </div>
-        <div class="data-row">
-          <span><i data-lucide="hard-drive" class="w-4 h-4"></i> Size</span>
-          <span id="fileSize">0 KB</span>
-        </div>
-        <div class="data-row">
-          <span><i data-lucide="layers" class="w-4 h-4"></i> Meshes</span>
-          <span id="meshInfo">0</span>
-        </div>
-        <div class="data-row">
-          <span><i data-lucide="list-tree" class="w-4 h-4"></i> Scene</span>
-          <span id="sceneSummary">-</span>
-        </div>
-        <div id="sceneList" class="scene-list"></div>
-      </div>
-    </div>
-
-    <div class="action-area">
-      <button class="btn btn-secondary btn-upload w-40">
-        <i data-lucide="import" class="w-5 h-5"></i>
-        Import GLB
-        <input type="file" id="fileInput" accept=".glb,.gltf">
-      </button>
-      <button id="toggleScaleBtn" class="btn btn-secondary">
-        <i data-lucide="maximize-2" class="w-5 h-5"></i>
-        Resize
-      </button>
-      <div class="scale-controls hidden" id="scaleControls">
-        <div class="scale-row">
-          <input id="scaleInput" type="number" min="0" step="0.01" placeholder="auto">
-          <select id="scaleUnit">
-            <option value="m">meters</option>
-            <option value="ft">feet</option>
-          </select>
+  <main>
+    <section id="viewer-container">
+      <div id="viewer"></div>
+      <div class="drop-overlay" id="dropOverlay">
+        <div class="flex flex-col items-center gap-4 bg-[#1c1c1f] p-8 border border-[var(--border)] shadow-2xl">
+          <i data-lucide="upload-cloud" class="w-12 h-12 text-blue-500"></i>
+          <span>Drop GLB/GLTF File Here</span>
         </div>
       </div>
-      <div class="flex gap-2">
-        <button id="exportBtn" class="btn btn-primary w-40" disabled>
-          <i data-lucide="settings-2" class="w-5 h-5"></i>
-          Convert YDR
+
+      <div class="overlay-controls">
+        <div class="viewer-controls">
+          <button id="gridBtn" title="Toggle Grid"><i data-lucide="grid"></i></button>
+          <button id="wireBtn" title="Wireframe Mode"><i data-lucide="box"></i></button>
+          <button id="rotateBtn" title="Auto Rotate"><i data-lucide="rotate-cw"></i></button>
+          <button id="resetBtn" title="Reset Camera"><i data-lucide="focus"></i></button>
+          <button id="bgBtn" title="Toggle Background"><i data-lucide="moon"></i></button>
+        </div>
+
+        <div class="info-panel">
+          <div class="data-row">
+            <span><i data-lucide="file" class="w-4 h-4"></i> File</span>
+            <span id="fileName" class="truncate max-w-[120px]" title="No file">No file</span>
+          </div>
+          <div class="data-row">
+            <span><i data-lucide="hard-drive" class="w-4 h-4"></i> Size</span>
+            <span id="fileSize">0 KB</span>
+          </div>
+          <div class="data-row">
+            <span><i data-lucide="layers" class="w-4 h-4"></i> Meshes</span>
+            <span id="meshInfo">0</span>
+          </div>
+          <div class="data-row">
+            <span><i data-lucide="list-tree" class="w-4 h-4"></i> Scene</span>
+            <span id="sceneSummary">-</span>
+          </div>
+          <div id="sceneList" class="scene-list"></div>
+        </div>
+      </div>
+
+      <div class="action-area">
+        <button class="btn btn-secondary btn-upload w-40">
+          <i data-lucide="import" class="w-5 h-5"></i>
+          Import GLB
+          <input type="file" id="fileInput" accept=".glb,.gltf">
         </button>
-        <button id="downloadRawBtn" class="btn btn-secondary w-50 hidden" disabled>
-          <i data-lucide="download" class="w-5 h-5"></i>
-          Raw (gen8)
+        <button id="toggleScaleBtn" class="btn btn-secondary">
+          <i data-lucide="maximize-2" class="w-5 h-5"></i>
+          Resize
         </button>
-        <button id="downloadFivemBtn" class="btn btn-secondary w-70 hidden" disabled>
-          <i data-lucide="download-cloud" class="w-5 h-5"></i>
-           FiveM Ready
-        </button>
+        <div class="scale-controls hidden" id="scaleControls">
+          <div class="scale-row">
+            <input id="scaleInput" type="number" min="0" step="0.01" placeholder="auto">
+            <select id="scaleUnit">
+              <option value="m">meters</option>
+              <option value="ft">feet</option>
+            </select>
+          </div>
+        </div>
+        <div class="flex gap-2">
+          <button id="exportBtn" class="btn btn-primary w-40" disabled>
+            <i data-lucide="settings-2" class="w-5 h-5"></i>
+            Convert YDR
+          </button>
+          <button id="downloadRawBtn" class="btn btn-secondary w-50 hidden" disabled>
+            <i data-lucide="download" class="w-5 h-5"></i>
+            Raw (gen8)
+          </button>
+          <button id="downloadFivemBtn" class="btn btn-secondary w-70 hidden" disabled>
+            <i data-lucide="download-cloud" class="w-5 h-5"></i>
+            FiveM Ready
+          </button>
+        </div>
       </div>
-    </div>
-  </section>
-</main>
+    </section>
+  </main>
 
-<div class="status-bar">
-  <span id="statusText" class="flex items-center gap-2 text-blue-200">
-    <div class="w-2 h-2 bg-gray-500" id="statusDot"></div>
-    System Idle
-  </span>
-</div>
+  <div class="status-bar">
+    <span id="statusText" class="flex items-center gap-2 text-blue-200">
+      <div class="w-2 h-2 bg-gray-500" id="statusDot"></div>
+      System Idle
+    </span>
+  </div>
 
-<script>
-  lucide.createIcons();
-</script>
+  <script>
+    lucide.createIcons();
+  </script>
 
-<script type="importmap">
+  <script type="importmap">
 {
   "imports":{
     "three":"https://cdn.jsdelivr.net/npm/three@0.159.0/build/three.module.js"
@@ -477,426 +514,448 @@
 }
 </script>
 
-<script type="module">
-import * as THREE from "three";
-import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.159.0/examples/jsm/controls/OrbitControls.js";
-import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three@0.159.0/examples/jsm/loaders/GLTFLoader.js";
+  <script type="module">
+    import * as THREE from "three";
+    import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.159.0/examples/jsm/controls/OrbitControls.js";
+    import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three@0.159.0/examples/jsm/loaders/GLTFLoader.js";
 
-const $viewer = $("#viewer");
-const viewer = $viewer[0];
-const $fileInput = $("#fileInput");
-const $exportBtn = $("#exportBtn");
-const $downloadRawBtn = $("#downloadRawBtn");
-const $downloadFivemBtn = $("#downloadFivemBtn");
-const $scaleInput = $("#scaleInput");
-const $scaleUnit = $("#scaleUnit");
-const $scaleControls = $("#scaleControls");
-const $toggleScaleBtn = $("#toggleScaleBtn");
-const $settingsBtn = $("#settingsBtn");
-const $settingsPanel = $("#settingsPanel");
-const $blenderPathInput = $("#blenderPathInput");
-const $saveBlenderPathBtn = $("#saveBlenderPathBtn");
-const $blenderPathStatus = $("#blenderPathStatus");
+    const $viewer = $("#viewer");
+    const viewer = $viewer[0];
+    const $fileInput = $("#fileInput");
+    const $exportBtn = $("#exportBtn");
+    const $downloadRawBtn = $("#downloadRawBtn");
+    const $downloadFivemBtn = $("#downloadFivemBtn");
+    const $scaleInput = $("#scaleInput");
+    const $scaleUnit = $("#scaleUnit");
+    const $scaleControls = $("#scaleControls");
+    const $toggleScaleBtn = $("#toggleScaleBtn");
+    const $settingsBtn = $("#settingsBtn");
+    const $settingsPanel = $("#settingsPanel");
+    const $blenderPathInput = $("#blenderPathInput");
+    const $saveBlenderPathBtn = $("#saveBlenderPathBtn");
+    const $blenderPathStatus = $("#blenderPathStatus");
 
-const BLENDER_PATH_KEY = "blenderPath";
+    const BLENDER_PATH_KEY = "blenderPath";
 
-$toggleScaleBtn.on("click", () => {
-  $scaleControls.toggleClass("hidden");
-});
+    $toggleScaleBtn.on("click", () => {
+      $scaleControls.toggleClass("hidden");
+    });
 
-$settingsBtn.on("click", () => {
-  const stored = localStorage.getItem(BLENDER_PATH_KEY) || "";
-  $blenderPathInput.val(stored);
-  $blenderPathStatus.text("");
-  $settingsPanel.toggleClass("hidden");
-});
+    $settingsBtn.on("click", () => {
+      const stored = localStorage.getItem(BLENDER_PATH_KEY) || "";
+      $blenderPathInput.val(stored);
+      $blenderPathStatus.text("");
+      $settingsPanel.toggleClass("hidden");
+    });
 
-$saveBlenderPathBtn.on("click", () => {
-  const value = ($blenderPathInput.val() || "").toString().trim();
-  if (value) {
-    localStorage.setItem(BLENDER_PATH_KEY, value);
-    $blenderPathStatus.text("Saved.");
-  } else {
-    localStorage.removeItem(BLENDER_PATH_KEY);
-    $blenderPathStatus.text("Cleared.");
-  }
-});
-const statusText = document.getElementById("statusText");
-const statusDot = document.getElementById("statusDot");
-const $dropOverlay = $("#dropOverlay");
-
-let scene, camera, renderer, controls, currentModel, grid;
-let wire = false, darkBg = true, isRotating = false;
-let lastRawUrl = null;
-let lastFivemUrl = null;
-let lastBaseName = "";
-
-function resetUiForNewFile() {
-  if (lastRawUrl) {
-    URL.revokeObjectURL(lastRawUrl);
-    lastRawUrl = null;
-  }
-  if (lastFivemUrl) {
-    URL.revokeObjectURL(lastFivemUrl);
-    lastFivemUrl = null;
-  }
-  lastBaseName = "";
-
-  $downloadRawBtn.prop("disabled", true).addClass("hidden");
-  $downloadFivemBtn.prop("disabled", true).addClass("hidden");
-
-  $exportBtn.prop("disabled", true);
-  $exportBtn.html('<i data-lucide="settings-2" class="w-5 h-5"></i> Convert YDR');
-  lucide.createIcons();
-
-  $("#meshInfo").text("0");
-  $("#sceneSummary").text("-");
-  $("#sceneList").empty();
-
-  if (grid && grid.visible) {
-    grid.visible = false;
-    $("#gridBtn").removeClass("active");
-  }
-
-  if (wire) {
-    wire = false;
-    $("#wireBtn").removeClass("active");
-    if (currentModel) {
-      currentModel.traverse(o => {
-        if (o.isMesh && o.material) {
-          o.material.wireframe = false;
-        }
-      });
-    }
-  }
-
-  if (isRotating) {
-    isRotating = false;
-    if (controls) {
-      controls.autoRotate = false;
-    }
-    $("#rotateBtn").removeClass("active");
-  }
-
-  if (!darkBg && renderer) {
-    darkBg = true;
-    renderer.setClearColor(0x111111);
-    $("#bgBtn").html('<i data-lucide="moon"></i>');
-    lucide.createIcons();
-  }
-}
-
-function setStatus(msg, type = "") {
-  statusText.childNodes[2].nodeValue = " " + msg;
-  statusText.className = "flex items-center gap-2 " + type;
-  
-  if(type === 'ok') statusDot.className = "w-2 h-2 rounded-full bg-green-500";
-  else if(type === 'error') statusDot.className = "w-2 h-2 rounded-full bg-red-500";
-  else statusDot.className = "w-2 h-2 rounded-full bg-gray-500";
-}
-
-function init() {
-  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setSize(viewer.clientWidth, viewer.clientHeight);
-  renderer.setClearColor(0x111111);
-  viewer.appendChild(renderer.domElement);
-
-  scene = new THREE.Scene();
-  camera = new THREE.PerspectiveCamera(45, viewer.clientWidth / viewer.clientHeight, 0.1, 1000);
-  camera.position.set(4, 4, 4);
-
-  controls = new OrbitControls(camera, renderer.domElement);
-  controls.enableDamping = true;
-  controls.dampingFactor = 0.05;
-
-  scene.add(new THREE.AmbientLight(0xffffff, 0.6));
-  const dirLight = new THREE.DirectionalLight(0xffffff, 1);
-  dirLight.position.set(5, 10, 7.5);
-  scene.add(dirLight);
-  
-  const fillLight = new THREE.DirectionalLight(0xffffff, 0.4);
-  fillLight.position.set(-5, 0, -5);
-  scene.add(fillLight);
-
-  grid = new THREE.GridHelper(20, 40, 0x444444, 0x222222);
-  grid.visible = false;
-  grid.position.y = -0.01;
-  scene.add(grid);
-
-  window.addEventListener("resize", () => {
-    camera.aspect = viewer.clientWidth / viewer.clientHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(viewer.clientWidth, viewer.clientHeight);
-  });
-
-  animate();
-}
-
-function animate() {
-  requestAnimationFrame(animate);
-  controls.update();
-  renderer.render(scene, camera);
-}
-
-function fitCamera(obj) {
-  const box = new THREE.Box3().setFromObject(obj);
-  const size = box.getSize(new THREE.Vector3()).length();
-  const center = box.getCenter(new THREE.Vector3());
-  
-  controls.reset();
-  
-  camera.position.copy(center);
-  camera.position.x += size / 1.5;
-  camera.position.y += size / 2;
-  camera.position.z += size / 1.5;
-  camera.lookAt(center);
-  
-  controls.maxDistance = size * 10;
-  controls.target.copy(center);
-  controls.update();
-}
-
-function loadFile(file) {
-  resetUiForNewFile();
-
-  const loader = new GLTFLoader();
-  const reader = new FileReader();
-
-  setStatus("Loading model...");
-  reader.onload = (e) => {
-    loader.parse(e.target.result, "", (gltf) => {
-      if (currentModel) scene.remove(currentModel);
-      currentModel = gltf.scene;
-      const box = new THREE.Box3().setFromObject(currentModel);
-      const center = box.getCenter(new THREE.Vector3());
-      currentModel.position.x += (currentModel.position.x - center.x);
-      currentModel.position.y += (currentModel.position.y - box.min.y);
-      currentModel.position.z += (currentModel.position.z - center.z);
-      
-      scene.add(currentModel);
-      fitCamera(currentModel);
-
-      let meshes = 0;
-      const meshNames = [];
-      currentModel.traverse(o => { 
-        if (o.isMesh) {
-          meshes++;
-          meshNames.push(o.name || "(unnamed mesh)");
-          if(o.material) o.material.side = THREE.DoubleSide;
-        }
-      });
-      
-      $("#meshInfo").text(meshes);
-      let dispName = file.name;
-      if(dispName.length > 20) dispName = dispName.substring(0, 10) + '...' + dispName.substring(dispName.length - 7);
-      
-      $("#fileName").text(dispName);
-      document.getElementById("fileName").title = file.name;
-      
-      let sizeStr = (file.size / 1024).toFixed(1) + " KB";
-      if(file.size > 1024 * 1024) sizeStr = (file.size / (1024 * 1024)).toFixed(2) + " MB";
-      $("#fileSize").text(sizeStr);
-
-      // Update scene info list
-      const $sceneSummary = $("#sceneSummary");
-      const $sceneList = $("#sceneList");
-      if (meshes > 0) {
-        $sceneSummary.text(meshes + " mesh" + (meshes > 1 ? "es" : ""));
+    $saveBlenderPathBtn.on("click", () => {
+      const value = ($blenderPathInput.val() || "").toString().trim();
+      if (value) {
+        localStorage.setItem(BLENDER_PATH_KEY, value);
+        $blenderPathStatus.text("Saved.");
       } else {
-        $sceneSummary.text("No meshes");
-      }
-      $sceneList.empty();
-      meshNames.forEach(name => {
-        const safeName = String(name);
-        $sceneList.append($("<div>").addClass("scene-item").text(safeName));
-      });
-
-      $exportBtn.prop("disabled", false);
-      setStatus("Model Loaded", "ok");
-      if(wire) {
-         wire = false;
-         $("#wireBtn").trigger("click");
-      }
-    }, undefined, (error) => {
-       console.error(error);
-       setStatus("Error loading model", "error");
-    });
-  };
-  reader.readAsArrayBuffer(file);
-}
-
-$(viewer).on("dragover", e => {
-  e.preventDefault();
-  $dropOverlay.addClass("active");
-});
-
-$(viewer).on("dragleave", () => $dropOverlay.removeClass("active"));
-
-$(viewer).on("drop", e => {
-  e.preventDefault();
-  $dropOverlay.removeClass("active");
-  if (e.originalEvent.dataTransfer.files[0]) loadFile(e.originalEvent.dataTransfer.files[0]);
-});
-
-$fileInput.on("change", e => {
-  if (e.target.files[0]) loadFile(e.target.files[0]);
-});
-
-$("#gridBtn").on("click", () => {
-  grid.visible = !grid.visible;
-  $("#gridBtn").toggleClass("active");
-});
-
-$("#wireBtn").on("click", () => {
-  wire = !wire;
-  $("#wireBtn").toggleClass("active");
-  if (currentModel) {
-    currentModel.traverse(o => {
-      if (o.isMesh && o.material) {
-        o.material.wireframe = wire;
+        localStorage.removeItem(BLENDER_PATH_KEY);
+        $blenderPathStatus.text("Cleared.");
       }
     });
-  }
-});
+    const statusText = document.getElementById("statusText");
+    const statusDot = document.getElementById("statusDot");
+    const $dropOverlay = $("#dropOverlay");
 
-$("#rotateBtn").on("click", () => {
-  isRotating = !isRotating;
-  controls.autoRotate = isRotating;
-  controls.autoRotateSpeed = 2;
-  $("#rotateBtn").toggleClass("active");
-});
+    let scene, camera, renderer, controls, currentModel, grid;
+    let wire = false, darkBg = true, isRotating = false;
+    let lastRawUrl = null;
+    let lastFivemUrl = null;
+    let lastBaseName = "";
 
-$("#resetBtn").on("click", () => {
-  if(currentModel) fitCamera(currentModel);
-});
+    function resetUiForNewFile() {
+      if (lastRawUrl) {
+        URL.revokeObjectURL(lastRawUrl);
+        lastRawUrl = null;
+      }
+      if (lastFivemUrl) {
+        URL.revokeObjectURL(lastFivemUrl);
+        lastFivemUrl = null;
+      }
+      lastBaseName = "";
 
-$("#bgBtn").on("click", () => {
-  darkBg = !darkBg;
-  renderer.setClearColor(darkBg ? 0x111111 : 0xf0f0f5);
-  const icon = darkBg ? '<i data-lucide="moon"></i>' : '<i data-lucide="sun"></i>';
-  $("#bgBtn").html(icon);
-  lucide.createIcons();
-  if(darkBg) {
-    grid.material.color.setHex(0x444444);
-    grid.material.opacity = 1;
-  } else {
-    grid.material.color.setHex(0xcccccc);
-    grid.material.transparent = true;
-    grid.material.opacity = 0.5;
-  }
-});
+      $downloadRawBtn.prop("disabled", true).addClass("hidden");
+      $downloadFivemBtn.prop("disabled", true).addClass("hidden");
 
-$exportBtn.on("click", async () => {
-  const file = $fileInput[0].files[0];
-  if (!file) return;
+      $exportBtn.prop("disabled", true).removeClass("btn-loading w-48 w-60").addClass("w-40");
+      $exportBtn.html('<i data-lucide="settings-2" class="w-5 h-5"></i> Convert YDR');
+      lucide.createIcons();
 
-  const blenderPath = localStorage.getItem(BLENDER_PATH_KEY) || "";
-  if (!blenderPath) {
-    setStatus("Set your blender path first", "error");
-    return;
-  }
+      $("#meshInfo").text("0");
+      $("#sceneSummary").text("-");
+      $("#sceneList").empty();
 
-  if (lastRawUrl) {
-    URL.revokeObjectURL(lastRawUrl);
-    lastRawUrl = null;
-  }
-  if (lastFivemUrl) {
-    URL.revokeObjectURL(lastFivemUrl);
-    lastFivemUrl = null;
-  }
-
-  $downloadRawBtn.prop("disabled", true);
-  $downloadFivemBtn.prop("disabled", true);
-  $downloadRawBtn.addClass("hidden");
-  $downloadFivemBtn.addClass("hidden");
-
-  setStatus("Uploading model for conversion...");
-  $exportBtn.prop("disabled", true);
-  $exportBtn.html('<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Converting...');
-  lucide.createIcons();
-
-  try {
-    async function convertVariant(outputType, suffixLabel) {
-      const formData = new FormData();
-      formData.append("model", file);
-      formData.append("blender_exe", blenderPath);
-
-      const scaleVal = parseFloat($scaleInput.val());
-      if (!Number.isNaN(scaleVal) && scaleVal > 0) {
-        formData.append("scale_height", String(scaleVal));
-        formData.append("scale_unit", $scaleUnit.val());
+      if (grid && grid.visible) {
+        grid.visible = false;
+        $("#gridBtn").removeClass("active");
       }
 
-      const response = await fetch(`/convert?output_type=${outputType}`, {
-        method: "POST",
-        body: formData,
+      if (wire) {
+        wire = false;
+        $("#wireBtn").removeClass("active");
+        if (currentModel) {
+          currentModel.traverse(o => {
+            if (o.isMesh && o.material) {
+              o.material.wireframe = false;
+            }
+          });
+        }
+      }
+
+      if (isRotating) {
+        isRotating = false;
+        if (controls) {
+          controls.autoRotate = false;
+        }
+        $("#rotateBtn").removeClass("active");
+      }
+
+      if (!darkBg && renderer) {
+        darkBg = true;
+        renderer.setClearColor(0x111111);
+        $("#bgBtn").html('<i data-lucide="moon"></i>');
+        lucide.createIcons();
+      }
+    }
+
+    function setStatus(msg, type = "") {
+      statusText.childNodes[2].nodeValue = " " + msg;
+      statusText.className = "flex items-center gap-2 " + type;
+
+      if (type === 'ok') statusDot.className = "w-2 h-2 rounded-full bg-green-500";
+      else if (type === 'error') statusDot.className = "w-2 h-2 rounded-full bg-red-500";
+      else statusDot.className = "w-2 h-2 rounded-full bg-gray-500";
+    }
+
+    function init() {
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(viewer.clientWidth, viewer.clientHeight);
+      renderer.setClearColor(0x111111);
+      viewer.appendChild(renderer.domElement);
+
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(45, viewer.clientWidth / viewer.clientHeight, 0.1, 1000);
+      camera.position.set(4, 4, 4);
+
+      controls = new OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.05;
+
+      scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+      const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+      dirLight.position.set(5, 10, 7.5);
+      scene.add(dirLight);
+
+      const fillLight = new THREE.DirectionalLight(0xffffff, 0.4);
+      fillLight.position.set(-5, 0, -5);
+      scene.add(fillLight);
+
+      grid = new THREE.GridHelper(20, 40, 0x444444, 0x222222);
+      grid.visible = false;
+      grid.position.y = -0.01;
+      scene.add(grid);
+
+      window.addEventListener("resize", () => {
+        camera.aspect = viewer.clientWidth / viewer.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(viewer.clientWidth, viewer.clientHeight);
       });
 
-      if (!response.ok) {
-        const text = await response.text();
-        console.error(`Conversion failed (${outputType}):`, text);
-        setStatus(`Conversion failed for ${suffixLabel}`, "error");
-        return null;
+      animate();
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+
+    function fitCamera(obj) {
+      const box = new THREE.Box3().setFromObject(obj);
+      const size = box.getSize(new THREE.Vector3()).length();
+      const center = box.getCenter(new THREE.Vector3());
+
+      controls.reset();
+
+      camera.position.copy(center);
+      camera.position.x += size / 1.5;
+      camera.position.y += size / 2;
+      camera.position.z += size / 1.5;
+      camera.lookAt(center);
+
+      controls.maxDistance = size * 10;
+      controls.target.copy(center);
+      controls.update();
+    }
+
+    function loadFile(file) {
+      resetUiForNewFile();
+
+      const loader = new GLTFLoader();
+      const reader = new FileReader();
+
+      setStatus("Loading model...");
+      reader.onload = (e) => {
+        loader.parse(e.target.result, "", (gltf) => {
+          if (currentModel) scene.remove(currentModel);
+          currentModel = gltf.scene;
+          const box = new THREE.Box3().setFromObject(currentModel);
+          const center = box.getCenter(new THREE.Vector3());
+          currentModel.position.x += (currentModel.position.x - center.x);
+          currentModel.position.y += (currentModel.position.y - box.min.y);
+          currentModel.position.z += (currentModel.position.z - center.z);
+
+          scene.add(currentModel);
+          fitCamera(currentModel);
+
+          let meshes = 0;
+          const meshNames = [];
+          currentModel.traverse(o => {
+            if (o.isMesh) {
+              meshes++;
+              meshNames.push(o.name || "(unnamed mesh)");
+              if (o.material) o.material.side = THREE.DoubleSide;
+            }
+          });
+
+          $("#meshInfo").text(meshes);
+          let dispName = file.name;
+          if (dispName.length > 20) dispName = dispName.substring(0, 10) + '...' + dispName.substring(dispName.length - 7);
+
+          $("#fileName").text(dispName);
+          document.getElementById("fileName").title = file.name;
+
+          let sizeStr = (file.size / 1024).toFixed(1) + " KB";
+          if (file.size > 1024 * 1024) sizeStr = (file.size / (1024 * 1024)).toFixed(2) + " MB";
+          $("#fileSize").text(sizeStr);
+
+          // Update scene info list
+          const $sceneSummary = $("#sceneSummary");
+          const $sceneList = $("#sceneList");
+          if (meshes > 0) {
+            $sceneSummary.text(meshes + " mesh" + (meshes > 1 ? "es" : ""));
+          } else {
+            $sceneSummary.text("No meshes");
+          }
+          $sceneList.empty();
+          meshNames.forEach(name => {
+            const safeName = String(name);
+            $sceneList.append($("<div>").addClass("scene-item").text(safeName));
+          });
+
+          $exportBtn.prop("disabled", false);
+          setStatus("Model Loaded", "ok");
+          if (wire) {
+            wire = false;
+            $("#wireBtn").trigger("click");
+          }
+        }, undefined, (error) => {
+          console.error(error);
+          setStatus("Error loading model", "error");
+        });
+      };
+      reader.readAsArrayBuffer(file);
+    }
+
+    $(viewer).on("dragover", e => {
+      e.preventDefault();
+      $dropOverlay.addClass("active");
+    });
+
+    $(viewer).on("dragleave", () => $dropOverlay.removeClass("active"));
+
+    $(viewer).on("drop", e => {
+      e.preventDefault();
+      $dropOverlay.removeClass("active");
+      if (e.originalEvent.dataTransfer.files[0]) loadFile(e.originalEvent.dataTransfer.files[0]);
+    });
+
+    $fileInput.on("change", e => {
+      if (e.target.files[0]) loadFile(e.target.files[0]);
+    });
+
+    $("#gridBtn").on("click", () => {
+      grid.visible = !grid.visible;
+      $("#gridBtn").toggleClass("active");
+    });
+
+    $("#wireBtn").on("click", () => {
+      wire = !wire;
+      $("#wireBtn").toggleClass("active");
+      if (currentModel) {
+        currentModel.traverse(o => {
+          if (o.isMesh && o.material) {
+            o.material.wireframe = wire;
+          }
+        });
+      }
+    });
+
+    $("#rotateBtn").on("click", () => {
+      isRotating = !isRotating;
+      controls.autoRotate = isRotating;
+      controls.autoRotateSpeed = 2;
+      $("#rotateBtn").toggleClass("active");
+    });
+
+    $("#resetBtn").on("click", () => {
+      if (currentModel) fitCamera(currentModel);
+    });
+
+    $("#bgBtn").on("click", () => {
+      darkBg = !darkBg;
+      renderer.setClearColor(darkBg ? 0x111111 : 0xf0f0f5);
+      const icon = darkBg ? '<i data-lucide="moon"></i>' : '<i data-lucide="sun"></i>';
+      $("#bgBtn").html(icon);
+      lucide.createIcons();
+      if (darkBg) {
+        grid.material.color.setHex(0x444444);
+        grid.material.opacity = 1;
+      } else {
+        grid.material.color.setHex(0xcccccc);
+        grid.material.transparent = true;
+        grid.material.opacity = 0.5;
+      }
+    });
+
+    $exportBtn.on("click", async () => {
+      const file = $fileInput[0].files[0];
+      if (!file) return;
+
+      const blenderPath = localStorage.getItem(BLENDER_PATH_KEY) || "";
+      if (!blenderPath) {
+        setStatus("Set your blender path first", "error");
+        return;
       }
 
-      const blob = await response.blob();
-      return URL.createObjectURL(blob);
-    }
+      if (lastRawUrl) {
+        URL.revokeObjectURL(lastRawUrl);
+        lastRawUrl = null;
+      }
+      if (lastFivemUrl) {
+        URL.revokeObjectURL(lastFivemUrl);
+        lastFivemUrl = null;
+      }
 
-    lastBaseName = file.name.replace(/\.glb|\.gltf/i, "");
+      $downloadRawBtn.prop("disabled", true);
+      $downloadFivemBtn.prop("disabled", true);
+      $downloadRawBtn.addClass("hidden");
+      $downloadFivemBtn.addClass("hidden");
 
-    const [fivemUrl, rawUrl] = await Promise.all([
-      convertVariant("fivem", "FiveM Ready"),
-      convertVariant("raw", "Raw (gen8)")
-    ]);
+      $exportBtn.addClass("btn-loading w-60").removeClass("w-40");
+      $exportBtn.prop("disabled", true);
+      $exportBtn.html('<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> <span id="btnStatusText" class="truncate">Converting...</span>');
+      lucide.createIcons();
 
-    lastFivemUrl = fivemUrl;
-    lastRawUrl = rawUrl;
+      setStatus("Uploading model for conversion...");
 
-    const fivemOk = !!fivemUrl;
-    const rawOk = !!rawUrl;
+      const statusInterval = setInterval(async () => {
+        try {
+          const res = await fetch("http://127.0.0.1:8000/status");
+          if (res.ok) {
+            const data = await res.json();
+            if (data.status) {
+              statusText.childNodes[2].nodeValue = " " + data.status;
+              const shortStatus = data.status.length > 25 ? data.status.substring(0, 22) + "..." : data.status;
+              $('#btnStatusText').text(shortStatus);
+            }
+          }
+        } catch (e) { }
+      }, 1000);
 
-    if (fivemOk && rawOk) {
-      setStatus("Export Complete (FiveM + Raw)", "ok");
-      $downloadRawBtn.prop("disabled", false).removeClass("hidden");
-      $downloadFivemBtn.prop("disabled", false).removeClass("hidden");
-    } else if (fivemOk || rawOk) {
-      setStatus("Export partially complete. Check errors.", "error");
-      if (rawOk) $downloadRawBtn.prop("disabled", false).removeClass("hidden");
-      if (fivemOk) $downloadFivemBtn.prop("disabled", false).removeClass("hidden");
-    } else {
-      setStatus("Export Failed", "error");
-    }
-  } catch (err) {
-    console.error(err);
-    setStatus("Export Failed", "error");
-  } finally {
-    $exportBtn.prop("disabled", false);
-    $exportBtn.html('<i data-lucide="settings-2" class="w-5 h-5"></i> Convert YDR');
-    lucide.createIcons();
-  }
-});
+      try {
+        async function convertVariant(outputType, suffixLabel) {
+          const formData = new FormData();
+          formData.append("model", file);
+          formData.append("blender_exe", blenderPath);
 
-$downloadRawBtn.on("click", () => {
-  if (!lastRawUrl || !lastBaseName) return;
-  const a = document.createElement("a");
-  a.href = lastRawUrl;
-  a.download = `${lastBaseName}_raw.zip`;
-  a.click();
-});
+          const scaleVal = parseFloat($scaleInput.val());
+          if (!Number.isNaN(scaleVal) && scaleVal > 0) {
+            formData.append("scale_height", String(scaleVal));
+            formData.append("scale_unit", $scaleUnit.val());
+          }
 
-$downloadFivemBtn.on("click", () => {
-  if (!lastFivemUrl || !lastBaseName) return;
-  const a = document.createElement("a");
-  a.href = lastFivemUrl;
-  a.download = `${lastBaseName}_fivem.zip`;
-  a.click();
-});
+          const response = await fetch(`http://127.0.0.1:8000/convert?output_type=${outputType}`, {
+            method: "POST",
+            body: formData,
+          });
 
-window.addEventListener('DOMContentLoaded', () => {
-  init();
-});
+          if (!response.ok) {
+            const text = await response.text();
+            console.error(`Conversion failed (${outputType}):`, text);
+            setStatus(`Conversion failed for ${suffixLabel}`, "error");
+            return null;
+          }
 
-</script>
+          const backendStatus = response.headers.get("X-Converter-Status");
+          if (backendStatus) {
+            setStatus(backendStatus, "ok");
+          }
+
+          const blob = await response.blob();
+          return URL.createObjectURL(blob);
+        }
+
+        lastBaseName = file.name.replace(/\.glb|\.gltf/i, "");
+
+        const fivemUrl = await convertVariant("fivem", "FiveM Ready");
+        const rawUrl = await convertVariant("raw", "Raw (gen8)");
+
+        lastFivemUrl = fivemUrl;
+        lastRawUrl = rawUrl;
+
+        const fivemOk = !!fivemUrl;
+        const rawOk = !!rawUrl;
+
+        if (fivemOk && rawOk) {
+          setStatus("Export Complete (FiveM + Raw)", "ok");
+          $downloadRawBtn.prop("disabled", false).removeClass("hidden");
+          $downloadFivemBtn.prop("disabled", false).removeClass("hidden");
+        } else if (fivemOk || rawOk) {
+          setStatus("Export partially complete. Check errors.", "error");
+          if (rawOk) $downloadRawBtn.prop("disabled", false).removeClass("hidden");
+          if (fivemOk) $downloadFivemBtn.prop("disabled", false).removeClass("hidden");
+        } else {
+          setStatus("Export Failed", "error");
+        }
+      } catch (err) {
+        console.error(err);
+        setStatus("Export Failed", "error");
+      } finally {
+        clearInterval(statusInterval);
+        $exportBtn.removeClass("btn-loading w-60").addClass("w-40");
+        $exportBtn.prop("disabled", false);
+        $exportBtn.html('<i data-lucide="settings-2" class="w-5 h-5"></i> Convert YDR');
+        lucide.createIcons();
+      }
+    });
+
+    $downloadRawBtn.on("click", () => {
+      if (!lastRawUrl || !lastBaseName) return;
+      const a = document.createElement("a");
+      a.href = lastRawUrl;
+      a.download = `${lastBaseName}_raw.zip`;
+      a.click();
+    });
+
+    $downloadFivemBtn.on("click", () => {
+      if (!lastFivemUrl || !lastBaseName) return;
+      const a = document.createElement("a");
+      a.href = lastFivemUrl;
+      a.download = `${lastBaseName}_fivem.zip`;
+      a.click();
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      init();
+    });
+
+  </script>
 </body>
+
 </html>

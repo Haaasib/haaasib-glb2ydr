@@ -64,7 +64,10 @@ http://127.0.0.1:8000/
 
 ---
 
-## License
+## License & Support
+
+- **Tebex Store**: [https://tebex.haaasib.dev/](https://tebex.haaasib.dev/)
+- **Discord**: [https://discord.com/invite/9m2KTFskjx](https://discord.com/invite/9m2KTFskjx)
 
 This project is licensed under the **MIT License**.
 

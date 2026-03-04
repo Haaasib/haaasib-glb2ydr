@@ -34,7 +34,7 @@ BASE_DIR = Path(__file__).resolve().parent
 INDEX_HTML = BASE_DIR / "index.html"
 BLENDER_EXE = os.environ.get(
     "BLENDER_EXE",
-    r"C:\Program Files\Blender Foundation\Blender 4.5\blender.exe",
+    r"C:\Program Files\Blender Foundation\Blender 4.5",
 )
 CONVERT_SCRIPT = str(BASE_DIR / "convert.py")
 
@@ -201,5 +201,5 @@ if __name__ == "__main__":
         webbrowser.open(url)
     except Exception:
         pass
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="127.0.0.1", port=8000)
 

@@ -1,0 +1,30 @@
+=== BLENDER LOG ===
+Blender 4.5.7 LTS (hash a9874eeece8d built 2026-02-17 01:33:36)
+ValueError: bpy_struct "OBJECT_OT_scale_to_dimension_interactive" registration error: '_dialog_success' BoolProperty could not register because it starts with an '_'
+Cannot read ARP prefs
+Update armature presets...
+Loading Material Combiner..
+Registered 15 Material Combiner classes.
+=== HAAASIB CONVERTER START ===
+GLB path: C:\Users\USER\AppData\Local\Temp\ydr_convert_ezq69znc\tablet.glb
+[STATUS] Importing GLB file...
+00:28:57 | INFO: Data are loaded, start creating Blender stuff
+00:28:57 | INFO: Blender create Mesh node Cube.002_Material_0
+00:28:57 | INFO: glTF import finished in 0.01s
+Scene now has 5 objects:
+  - Sketchfab_model (type=EMPTY, parent=None)
+  - 41c8428f106a4a789b95779c0ec4af10.fbx (type=EMPTY, parent=Sketchfab_model)
+  - RootNode (type=EMPTY, parent=41c8428f106a4a789b95779c0ec4af10.fbx)
+  - Cube.002 (type=EMPTY, parent=RootNode)
+  - Cube.002_Material_0 (type=MESH, parent=Cube.002)
+Detected meshes in scene: ['Cube.002_Material_0']
+[STATUS] Single mesh detected, no join needed.
+Imported selected meshes: ['Cube.002_Material_0']
+Main mesh chosen: Cube.002_Material_0
+Joining 1 mesh object(s) into one before triangle check...
+Warning: No mesh data to join
+Joined mesh stats: triangles=492, vertices=474
+Triangle count <= 25k, skipping decimate.
+[STATUS] Preparing Material Combiner atlas (if addon is available)...
+
+Sent an internal break event. Press ^C again to kill Blender

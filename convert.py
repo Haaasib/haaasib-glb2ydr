@@ -3,11 +3,6 @@ import os
 import subprocess
 import shutil
 
-
-def set_status(message):
-    print(f"[STATUS] {message}", flush=True)
-
-
 glb_path = os.environ.get("GLB_PATH")
 
 if not glb_path:
@@ -48,28 +43,13 @@ if not os.path.exists(glb_path):
 
 print("=== HAAASIB CONVERTER START ===")
 print(f"GLB path: {glb_path}")
-set_status("Importing GLB file...")
+
 bpy.ops.import_scene.gltf(filepath=glb_path)
 
 scene_objects = list(bpy.context.scene.objects)
 print(f"Scene now has {len(scene_objects)} objects:")
 for obj in scene_objects:
     print(f"  - {obj.name} (type={obj.type}, parent={obj.parent.name if obj.parent else 'None'})")
-
-mesh_objs_in_scene = [o for o in bpy.context.scene.objects if o.type == "MESH"]
-print(f"Detected meshes in scene: {[o.name for o in mesh_objs_in_scene]}")
-
-if len(mesh_objs_in_scene) > 1:
-    set_status(f"Joining {len(mesh_objs_in_scene)} meshes into one...")
-    bpy.ops.object.select_all(action='DESELECT')
-    for obj in mesh_objs_in_scene:
-        obj.select_set(True)
-    bpy.context.view_layer.objects.active = mesh_objs_in_scene[0]
-    bpy.ops.object.join()
-    mesh_objs_in_scene = [o for o in bpy.context.scene.objects if o.type == "MESH"]
-    print(f"After join, meshes in scene: {[o.name for o in mesh_objs_in_scene]}")
-else:
-    set_status("Single mesh detected, no join needed.")
 
 imported_meshes = [o for o in bpy.context.selected_objects if o.type == "MESH"]
 print(f"Imported selected meshes: {[o.name for o in imported_meshes]}")
@@ -81,6 +61,7 @@ if imported_meshes:
     if getattr(main_obj, "data", None) and hasattr(main_obj.data, "name"):
         main_obj.data.name = model_name
 
+    # Optional rescale based on requested target height/size
     target_height_str = os.environ.get("TARGET_HEIGHT")
     target_unit = os.environ.get("TARGET_HEIGHT_UNIT", "m").lower()
     if target_height_str:
@@ -119,128 +100,16 @@ if imported_meshes:
         if obj.type != "MESH":
             bpy.data.objects.remove(obj, do_unlink=True)
 
-    bpy.ops.object.select_all(action='DESELECT')
-    mesh_objs = [o for o in bpy.context.scene.objects if o.type == "MESH"]
-    for obj in mesh_objs:
-        obj.select_set(True)
-
-    if mesh_objs:
-        bpy.context.view_layer.objects.active = main_obj
-        print(f"Joining {len(mesh_objs)} mesh object(s) into one before triangle check...")
-        bpy.ops.object.join()
-
-        mesh = main_obj.data
-        mesh.calc_loop_triangles()
-        tri_count = len(mesh.loop_triangles)
-        vert_count = len(mesh.vertices)
-        print(f"Joined mesh stats: triangles={tri_count}, vertices={vert_count}")
-
-        if tri_count >= 25000:
-            print("Triangle count >= 25k, applying decimate modifier...")
-            dec_mod = main_obj.modifiers.new(name="Decimate", type='DECIMATE')
-            dec_mod.ratio = 0.05
-            bpy.ops.object.modifier_apply(modifier=dec_mod.name)
-        else:
-            print("Triangle count <= 25k, skipping decimate.")
-
-
-def _get_image_path_for_material_image(img: "bpy.types.Image") -> str | None:
-    if not img:
-        return None
-    path = os.path.abspath(bpy.path.abspath(img.filepath))
-    if not path or not os.path.isfile(path):
-        return None
-    if path.lower().endswith((".spa", ".sph")):
-        return None
-    return path
-
-def run_material_combiner_atlas() -> None:
-    set_status("Preparing Material Combiner atlas (if addon is available)...")
-
-    try:
-        import addon_utils
-        import urllib.request
-        
-        addon_module = "material-combiner"
-        enabled = False
-        
-        for mod in ["material_combiner", "material-combiner", "material-combiner-addon-master"]:
-            try:
-                en, _ = addon_utils.check(mod)
-                if en:
-                    enabled = True
-                    addon_module = mod
-                    break
-            except Exception:
-                pass
-
-        if not enabled:
-            set_status("Material Combiner not installed. Downloading...")
-            addon_zip_path = os.path.join(cache_root, "material_combiner.zip")
-            download_url = "https://github.com/Grim-es/material-combiner-addon/archive/refs/heads/master.zip"
-            
-            if not os.path.exists(addon_zip_path):
-                urllib.request.urlretrieve(download_url, addon_zip_path)
-
-            print("Installing addon...")
-            bpy.ops.preferences.addon_install(filepath=addon_zip_path, overwrite=True)
-            
-            for mod in ["material-combiner-addon-master", "material_combiner", "material-combiner"]:
-                try:
-                    addon_utils.enable(mod, default_set=True)
-                    en, _ = addon_utils.check(mod)
-                    if en:
-                        addon_module = mod
-                        enabled = True
-                        print(f"Enabled Material Combiner addon via {mod}.")
-                        break
-                except Exception:
-                    continue
-                    
-            if enabled:
-                try:
-                    bpy.ops.wm.save_userpref()
-                except Exception:
-                    pass
-            else:
-                print("Could not enable Material Combiner addon after downloading.")
-        else:
-            try:
-                addon_utils.enable(addon_module, default_set=True)
-                print(f"Enabled existing Material Combiner addon via {addon_module}.")
-            except Exception as e:
-                print(f"Could not enable Material Combiner addon: {e}")
-                
-    except Exception as e:
-        print(f"addon_utils not available or failed: {e}")
-
-    scn = bpy.context.scene
-
-    try:
-        bpy.ops.smc.refresh_ob_data()
-    except Exception as e:
-        print(f"Material Combiner 'refresh_ob_data' unavailable, skipping atlas: {e}")
-        return
-
-    try:
-        scn.smc_size = "PO2"
-        scn.smc_gaps = 0
-        scn.smc_crop = True
-        scn.smc_pixel_art = False
-    except Exception as e:
-        print(f"Could not set Material Combiner scene settings: {e}")
-
-    atlas_dir = cache_root
-    os.makedirs(atlas_dir, exist_ok=True)
-
-    try:
-        result = bpy.ops.smc.combiner("EXEC_DEFAULT", directory=atlas_dir, cats=True)
-        print(f"Material Combiner 'combiner' result: {result}")
-    except Exception as e:
-        print(f"Material Combiner 'combiner' failed, skipping atlas: {e}")
-
-
-run_material_combiner_atlas()
+    removed = 0
+    for obj in list(bpy.data.objects):
+        if obj.type != "MESH":
+            continue
+        if obj is main_obj:
+            continue
+        print(f"Removing extra mesh: {obj.name}")
+        bpy.data.objects.remove(obj, do_unlink=True)
+        removed += 1
+    print(f"Removed {removed} extra mesh object(s), only main mesh kept.")
 
 for obj in bpy.context.scene.objects:
     if obj.type != "MESH":
@@ -280,8 +149,6 @@ for obj in bpy.context.scene.objects:
                     dds_img = bpy.data.images.load(dds_path)
                     node.image = dds_img
 
-set_status("Finished texture conversion. Preparing Sollumz conversion...")
-
 bpy.context.scene.auto_create_embedded_col = True
 
 bpy.ops.object.select_all(action='DESELECT')
@@ -293,7 +160,6 @@ for obj in meshes:
 if meshes:
     bpy.context.view_layer.objects.active = meshes[0]
 
-set_status("Running Sollumz drawable conversion...")
 bpy.ops.sollumz.converttodrawable()
 
 poly_mesh = None
@@ -307,7 +173,6 @@ if poly_mesh:
     poly_mesh.select_set(True)
     bpy.context.view_layer.objects.active = poly_mesh
 
-    set_status("Setting up collision materials...")
     while len(poly_mesh.material_slots) > 0:
         bpy.ops.object.material_slot_remove()
 
@@ -324,18 +189,19 @@ for obj in mesh_objects:
 if mesh_objects:
     bpy.context.view_layer.objects.active = mesh_objects[0]
 
-set_status("Finalizing materials, UVs and color attributes...")
 bpy.ops.sollumz.convert_active_material_to_selected()
 bpy.ops.sollumz.setallmatembedded()
 bpy.ops.sollumz.uv_maps_rename_by_order()
 bpy.ops.sollumz.color_attrs_add_missing()
 
+# Debug: list Sollumz types after conversion
 print("Sollumz object types after conversion:")
 for obj in bpy.context.scene.objects:
     stype = getattr(obj, "sollum_type", None)
     if stype:
         print(f"  - {obj.name}: sollum_type={stype}")
 
+# Rename drawable objects without touching Sollumz's selection
 drawable_types = {"sollumz_drawable", "sollumz_drawable_model"}
 for obj in bpy.context.scene.objects:
     stype = getattr(obj, "sollum_type", "")
@@ -354,11 +220,6 @@ for obj in bpy.context.scene.objects:
 
 bpy.context.scene.sollumz_export_path = export_root
 
-for d in (export_root, script_root):
-    os.makedirs(os.path.join(d, "gen8"), exist_ok=True)
-    os.makedirs(os.path.join(d, "gen9"), exist_ok=True)
-
-set_status("Exporting assets with Sollumz...")
 print("Calling Sollumz export_assets with Sollumz's own selection.")
 bpy.ops.sollumz.export_assets()
 
@@ -430,5 +291,3 @@ ytyp_content = f'''<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 with open(ytyp_path, "w", encoding="utf-8") as f:
     f.write(ytyp_content)
-
-set_status("Conversion completed.")

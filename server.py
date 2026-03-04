@@ -11,15 +11,8 @@ import zipfile
 from pathlib import Path
 import webbrowser
 
-import webbrowser
-
-current_conversion_status = "System Idle"
 
 app = FastAPI()
-
-@app.get("/status")
-def get_status():
-    return {"status": current_conversion_status}
 
 app.add_middleware(
     CORSMiddleware,
@@ -84,39 +77,29 @@ async def convert_model(
                 detail=f"Blender executable not found: {exe_path}. Set BLENDER_EXE env var or configure the path in the UI.",
             )
 
-        import asyncio
-        process = await asyncio.create_subprocess_exec(
-            exe_path,
-            "-b",
-            "-P",
-            CONVERT_SCRIPT,
-            env=env,
-            cwd=str(BASE_DIR),
-            stdout=asyncio.subprocess.PIPE,
-            stderr=asyncio.subprocess.STDOUT,
-        )
-
-        global current_conversion_status
-        current_conversion_status = "Starting Blender conversion..."
-
-        log_path = BASE_DIR / "latest_blender_log.txt"
-        last_status = ""
-        with open(log_path, "w", encoding="utf-8") as log_f:
-            log_f.write("=== BLENDER LOG ===\n")
-            while True:
-                line_bytes = await process.stdout.readline()
-                if not line_bytes:
-                    break
-                line = line_bytes.decode("utf-8", errors="replace")
-                log_f.write(line)
-                log_f.flush()
-                # If we see our custom status tag, update the global status
-                if line.startswith("[STATUS] "):
-                    s = line[len("[STATUS] ") :].strip()
-                    last_status = s
-                    current_conversion_status = s
-
-        await process.wait()
+        try:
+            completed = subprocess.run(
+                [
+                    exe_path,
+                    "-b",
+                    "-P",
+                    CONVERT_SCRIPT,
+                ],
+                env=env,
+                cwd=str(BASE_DIR),
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            log_path = BASE_DIR / "latest_blender_log.txt"
+            with open(log_path, "w", encoding="utf-8") as log_f:
+                log_f.write("=== STDOUT ===\n")
+                log_f.write(completed.stdout or "")
+                log_f.write("\n\n=== STDERR ===\n")
+                log_f.write(completed.stderr or "")
+        except subprocess.CalledProcessError as e:
+            msg = f"Blender failed:\nSTDOUT:\n{e.stdout}\n\nSTDERR:\n{e.stderr}"
+            return PlainTextResponse(msg, status_code=500)
 
         export_source_root = None
 
@@ -182,16 +165,12 @@ lua54 'yes'
         suffix = "_fivem.zip" if normalized_type == "fivem" else "_raw.zip"
         download_name = model_base + suffix
 
-        headers = {
-            "Content-Disposition": f'attachment; filename="{download_name}"'
-        }
-        if last_status:
-            headers["X-Converter-Status"] = last_status
-
         return StreamingResponse(
             buffer,
             media_type="application/zip",
-            headers=headers,
+            headers={
+                "Content-Disposition": f'attachment; filename="{download_name}"'
+            },
         )
 
 

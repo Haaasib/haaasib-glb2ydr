@@ -20,11 +20,14 @@ Watch the full installation and usage guide here:
 Before using the converter, install the following:
 
 - **Python**  
-[https://www.python.org/downloads/](https://www.python.org/downloads/)
+  - Download: [https://www.python.org/downloads/](https://www.python.org/downloads/)  
+  - Install video: [https://www.youtube.com/watch?v=C3bOxcILGu4](https://www.youtube.com/watch?v=C3bOxcILGu4)
 - **Blender**  
-[https://www.blender.org/](https://www.blender.org/)
+  - Download: [https://www.blender.org/](https://www.blender.org/)  
+  - Install video: [https://www.youtube.com/watch?v=FwTqdlsrCKw](https://www.youtube.com/watch?v=FwTqdlsrCKw)
 - **Sollumz (Blender Plugin)**  
-[https://github.com/Sollumz/Sollumz/releases](https://github.com/Sollumz/Sollumz/releases)
+  - Download: [https://github.com/Sollumz/Sollumz/releases](https://github.com/Sollumz/Sollumz/releases)  
+  - Install video: [https://www.youtube.com/watch?v=41FruDEzXLo](https://www.youtube.com/watch?v=41FruDEzXLo)
 
 After downloading Sollumz, install it inside Blender.
 

@@ -26,3 +26,5 @@ ydr_convert_*/
 # Logs
 *.log
 
+
+sync_config.jsonc

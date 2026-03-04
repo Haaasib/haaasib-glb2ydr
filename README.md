@@ -26,8 +26,7 @@ If the export fails, open **Blender** and follow these steps:
 
 3. Find **MatCombiner** and click **Install Pillow**.
 
-4. Restart **Blender**, then restart the **.bat** file and Blender again.
-
+4. Restart **Blender**, then restart the **start.bat** file and Blender again.
 
 ---
 

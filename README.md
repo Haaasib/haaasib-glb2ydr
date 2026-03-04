@@ -4,7 +4,7 @@
 
 ### Screenshot
 
-![Haaasib 3D Converter UI](https://r2.fivemanage.com/ctqjlicI2ZX3DV1y4jRyb/Screenshot_1.png)
+![Haaasib 3D Converter UI](https://r2.fivemanage.com/ctqjlicI2ZX3DV1y4jRyb/68747470733a2f2f72322e666976656d616e6167652e636f6d2f6374716a6c696349325a583344563179346a5279622f53637265656e73686f745f312e706e67.png)
 
 ---
 ### Installation & Usage Video

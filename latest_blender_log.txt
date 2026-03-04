@@ -1,268 +1,75 @@
 === BLENDER LOG ===
-success!
-
-Reloading external rigs...
-
-Reloading external metarigs...
-
-🔄 blenderkit: Verbose is enabled
-
-🔄 blenderkit: Read in JSON settings from file
-
-ℹ️  blenderkit: Ports reordered so first port is now 62485 (previous index was 0) [13:32:25.241, client_lib.py:125]
-
-Loading Material Combiner..
-
-Registered 15 Material Combiner classes.
-
-Created history step c227a6a3-9efe-466e-b76b-b21005ff077a
-
-ℹ️  blenderkit: Created new search history step [13:32:25.277, search.py:1926]
-
-ℹ️  blenderkit: No temporarily enabled addons to clean up [13:32:25.277, download.py:398]
-
-=== HAAASIB CONVERTER START ===
-
-GLB path: C:\Users\User\AppData\Local\Temp\ydr_convert_k11jmpgi\sweater_nike_sportswear_club_fleece.glb
-
-[STATUS] Importing GLB file...
-
-13:32:25 | INFO: Data are loaded, start creating Blender stuff
-
-13:32:25 | INFO: Blender create Mesh node defaultMaterial
-
-13:32:25 | INFO: Blender create Mesh node defaultMaterial
-
-13:32:25 | INFO: Blender create Mesh node defaultMaterial
-
-13:32:25 | INFO: Blender create Mesh node defaultMaterial
-
-13:32:25 | INFO: Blender create Mesh node defaultMaterial
-
-13:32:25 | INFO: Blender create Mesh node defaultMaterial
-
-13:32:25 | INFO: glTF import finished in 0.26s
-
-Scene now has 14 objects:
-
-  - Sketchfab_model (type=EMPTY, parent=None)
-
-  - Collada visual scene group (type=EMPTY, parent=Sketchfab_model)
-
-  - Pocket_Low1:Sweater_Low (type=EMPTY, parent=Collada visual scene group)
-
-  - defaultMaterial (type=MESH, parent=Pocket_Low1:Sweater_Low)
-
-  - Pocket_Low1:AggletR_Low (type=EMPTY, parent=Collada visual scene group)
-
-  - defaultMaterial.001 (type=MESH, parent=Pocket_Low1:AggletR_Low)
-
-  - Pocket_Low1:AggletL_Low (type=EMPTY, parent=Collada visual scene group)
-
-  - defaultMaterial.002 (type=MESH, parent=Pocket_Low1:AggletL_Low)
-
-  - Pocket_Low1:Sweater_ClipL_Low (type=EMPTY, parent=Collada visual scene group)
-
-  - defaultMaterial.003 (type=MESH, parent=Pocket_Low1:Sweater_ClipL_Low)
-
-  - Pocket_Low1:Sweater_ClipR_Low (type=EMPTY, parent=Collada visual scene group)
-
-  - defaultMaterial.004 (type=MESH, parent=Pocket_Low1:Sweater_ClipR_Low)
-
-  - Pocket_Low1:Pocket_Low (type=EMPTY, parent=Collada visual scene group)
-
-  - defaultMaterial.005 (type=MESH, parent=Pocket_Low1:Pocket_Low)
-
-Detected meshes in scene: ['defaultMaterial', 'defaultMaterial.001', 'defaultMaterial.002', 'defaultMaterial.003', 'defaultMaterial.004', 'defaultMaterial.005']
-
-[STATUS] Joining 6 meshes into one...
-
-After join, meshes in scene: ['defaultMaterial']
-
-Imported selected meshes: ['defaultMaterial']
-
-Main mesh chosen: defaultMaterial
-
-Joining 1 mesh object(s) into one before triangle check...
-
-Warning: No mesh data to join
-
-Joined mesh stats: triangles=14648, vertices=8302
-
-Triangle count <= 25k, skipping decimate.
-
-[STATUS] Preparing Material Combiner atlas (if addon is available)...
-
-Blender 4.2.3 LTS (hash 0e22e4fcea03 built 2024-10-15 01:37:33)
-Traceback (most recent call last):
-
-  File "C:\Users\User\AppData\Roaming\Blender Foundation\Blender\4.2\scripts\addons\material-combiner-addon-master\operators\combiner\combiner.py", line 114, in execute
-
-    atlases = get_atlas(scn, self.structure, atlas_size)
-
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-  File "C:\Users\User\AppData\Roaming\Blender Foundation\Blender\4.2\scripts\addons\material-combiner-addon-master\operators\combiner\combiner_ops.py", line 459, in get_atlas
-
-    albedo_atlas = Image.new("RGBA", atlas_size)
-
-                   ^^^^^^^^^
-
-AttributeError: 'NoneType' object has no attribute 'new'
-
-Microsoft (R) DirectX Texture Converter [DirectXTex] Version 2025.10.28.1
-
-Copyright (C) Microsoft Corp.
-
-
-
-reading C:\Users\User\AppData\Local\Temp\ydr_convert_k11jmpgi\cache\Image_0.png (2048x2048 R8G8B8A8_UNORM 2D a:Opaque) as
-
-[Using DirectCompute 5.0 on "NVIDIA GeForce GTX 1660 SUPER"]
-
- (2048x2048,12 BC7_UNORM 2D a:Opaque)
-
-writing C:\Users\User\AppData\Local\Temp\ydr_convert_k11jmpgi\cache\Image_0.dds
-
-Microsoft (R) DirectX Texture Converter [DirectXTex] Version 2025.10.28.1
-
-Copyright (C) Microsoft Corp.
-
-
-
-reading C:\Users\User\AppData\Local\Temp\ydr_convert_k11jmpgi\cache\Image_2.png (2048x2048 R8G8B8A8_UNORM 2D a:Opaque) as
-
-[Using DirectCompute 5.0 on "NVIDIA GeForce GTX 1660 SUPER"]
-
- (2048x2048,12 BC7_UNORM 2D a:Opaque)
-
-writing C:\Users\User\AppData\Local\Temp\ydr_convert_k11jmpgi\cache\Image_2.dds
-
-Microsoft (R) DirectX Texture Converter [DirectXTex] Version 2025.10.28.1
-
-Copyright (C) Microsoft Corp.
-
-
-
-reading C:\Users\User\AppData\Local\Temp\ydr_convert_k11jmpgi\cache\Image_3.png (2048x2048 R8G8B8A8_UNORM 2D a:Opaque) as
-
-[Using DirectCompute 5.0 on "NVIDIA GeForce GTX 1660 SUPER"]
-
- (2048x2048,12 BC7_UNORM 2D a:Opaque)
-
-writing C:\Users\User\AppData\Local\Temp\ydr_convert_k11jmpgi\cache\Image_3.dds
-
-Microsoft (R) DirectX Texture Converter [DirectXTex] Version 2025.10.28.1
-
-Copyright (C) Microsoft Corp.
-
-
-
-reading C:\Users\User\AppData\Local\Temp\ydr_convert_k11jmpgi\cache\Image_1.png (2048x2048 B8G8R8A8_UNORM 2D) as
-
-[Using DirectCompute 5.0 on "NVIDIA GeForce GTX 1660 SUPER"]
-
- (2048x2048,12 BC7_UNORM 2D a:NonPM)
-
-writing C:\Users\User\AppData\Local\Temp\ydr_convert_k11jmpgi\cache\Image_1.dds
-
-Microsoft (R) DirectX Texture Converter [DirectXTex] Version 2025.10.28.1
-
-Copyright (C) Microsoft Corp.
-
-
-
-reading C:\Users\User\AppData\Local\Temp\ydr_convert_k11jmpgi\cache\Image_1.png (2048x2048 B8G8R8A8_UNORM 2D) as
-
-[Using DirectCompute 5.0 on "NVIDIA GeForce GTX 1660 SUPER"]
-
- (2048x2048,12 BC7_UNORM 2D a:NonPM)
-
-writing C:\Users\User\AppData\Local\Temp\ydr_convert_k11jmpgi\cache\Image_1.dds
-
-Unregistered 15 Material Combiner classes.
-
-Loading Material Combiner..
-
-Registered 15 Material Combiner classes.
-
-Enabled existing Material Combiner addon via material-combiner-addon-master.
-
-Error: Only one unique material selected - nothing to combine
-
-Error: Python: Traceback (most recent call last):
-
-  File "C:\Users\User\AppData\Roaming\Blender Foundation\Blender\4.2\scripts\addons\material-combiner-addon-master\operators\combiner\combiner.py", line 114, in execute
-
-    atlases = get_atlas(scn, self.structure, atlas_size)
-
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-  File "C:\Users\User\AppData\Roaming\Blender Foundation\Blender\4.2\scripts\addons\material-combiner-addon-master\operators\combiner\combiner_ops.py", line 459, in get_atlas
-
-    albedo_atlas = Image.new("RGBA", atlas_size)
-
-                   ^^^^^^^^^
-
-AttributeError: 'NoneType' object has no attribute 'new'
-
-Location: C:\Program Files\Blender Foundation\Blender 4.2\4.2\scripts\modules\bpy\ops.py:107
-
-Material Combiner 'combiner' failed, skipping atlas: Error: Only one unique material selected - nothing to combine
-
-Error: Python: Traceback (most recent call last):
-
-  File "C:\Users\User\AppData\Roaming\Blender Foundation\Blender\4.2\scripts\addons\material-combiner-addon-master\operators\combiner\combiner.py", line 114, in execute
-
-    atlases = get_atlas(scn, self.structure, atlas_size)
-
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-  File "C:\Users\User\AppData\Roaming\Blender Foundation\Blender\4.2\scripts\addons\material-combiner-addon-master\operators\combiner\combiner_ops.py", line 459, in get_atlas
-
-    albedo_atlas = Image.new("RGBA", atlas_size)
-
-                   ^^^^^^^^^
-
-AttributeError: 'NoneType' object has no attribute 'new'
-
-Location: C:\Program Files\Blender Foundation\Blender 4.2\4.2\scripts\modules\bpy\ops.py:107
-
-
-
-[STATUS] Finished texture conversion. Preparing Sollumz conversion...
-
-[STATUS] Running Sollumz drawable conversion...
-
-Info: Succesfully converted all selected objects to a Drawable.
-
-[STATUS] Setting up collision materials...
-
-Info: Succesfully added CONCRETE material to sweater_nike_sportswear_club_fleece.model.poly_mesh
-
-Info: Applied preset 'General (Default)' to: sweater_nike_sportswear_club_fleece.model.poly_mesh
-
-[STATUS] Finalizing materials, UVs and color attributes...
-
-Traceback (most recent call last):
-
-  File "C:\Users\User\Desktop\haaasib-glb2ydr-main\convert.py", line 328, in <module>
-
-    bpy.ops.sollumz.convert_active_material_to_selected()
-
-  File "C:\Program Files\Blender Foundation\Blender 4.2\4.2\scripts\modules\bpy\ops.py", line 109, in __call__
-
-    ret = _op_call(self.idname_py(), kw)
-
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-AttributeError: Calling operator "bpy.ops.sollumz.convert_active_material_to_selected" error, could not be found
-
-ℹ️  blenderkit: Unregistering BlenderKit add-on [13:32:31.557, __init__.py:2696]
-
-ℹ️  blenderkit: No temporarily enabled addons to clean up [13:32:31.558, download.py:398]
-
-Unregistered 15 Material Combiner classes.
-
+Blender 4.5.7 LTS (hash a9874eeece8d built 2026-02-17 01:33:36)
+ValueError: bpy_struct "OBJECT_OT_scale_to_dimension_interactive" registration error: '_dialog_success' BoolProperty could not register because it starts with an '_'
+Cannot read ARP prefs
+Update armature presets...
+Loading Material Combiner..
+Registered 15 Material Combiner classes.
+=== HAAASIB CONVERTER START ===
+GLB path: C:\Users\USER\AppData\Local\Temp\ydr_convert_juisdk5f\newyearlogo.glb
+[STATUS] Importing GLB file...
+01:51:46 | INFO: Data are loaded, start creating Blender stuff
+01:51:46 | INFO: Blender create Mesh node Cube.001
+01:51:46 | INFO: Blender create Mesh node Cube.002
+01:51:46 | INFO: Blender create Mesh node Cube.003
+01:51:46 | INFO: Blender create Mesh node Cube.004
+01:51:46 | INFO: glTF import finished in 0.01s
+Scene now has 4 objects:
+  - Cube (type=MESH, parent=None)
+  - Cube.001 (type=MESH, parent=None)
+  - Cube.002 (type=MESH, parent=None)
+  - Cube.003 (type=MESH, parent=None)
+Detected meshes in scene: ['Cube', 'Cube.001', 'Cube.002', 'Cube.003']
+[STATUS] Joining 4 meshes into one...
+After join, meshes in scene: ['Cube']
+Imported selected meshes: ['Cube']
+Main mesh chosen: Cube
+Rescaling main mesh from size 31.9220 to 3.0480 meters (factor 0.0955)
+Joining 1 mesh object(s) into one before triangle check...
+Warning: No mesh data to join
+Joined mesh stats: triangles=408, vertices=522
+Triangle count <= 25k, skipping decimate.
+[STATUS] Preparing Material Combiner atlas (if addon is available)...
+Microsoft (R) DirectX Texture Converter [DirectXTex] Version 2025.10.28.1
+Copyright (C) Microsoft Corp.
+
+reading C:\Users\USER\AppData\Local\Temp\ydr_convert_juisdk5f\cache\Atlas_00001.png (32x32 B8G8R8A8_UNORM 2D) as
+[Using DirectCompute 5.0 on "NVIDIA GeForce RTX 4060"]
+ (2048x2048,12 BC7_UNORM 2D a:Opaque)
+writing C:\Users\USER\AppData\Local\Temp\ydr_convert_juisdk5f\cache\Atlas_00001.dds
+Unregistered 15 Material Combiner classes.
+Loading Material Combiner..
+Registered 15 Material Combiner classes.
+Enabled existing Material Combiner addon via material-combiner-addon-master.
+Info: Materials were combined
+Material Combiner 'combiner' result: {'FINISHED'}
+[STATUS] Finished texture conversion. Preparing Sollumz conversion...
+[STATUS] Running Sollumz drawable conversion...
+Info: Succesfully converted all selected objects to a Drawable.
+[STATUS] Setting up collision materials...
+Info: Succesfully added CONCRETE material to newyearlogo.model.poly_mesh
+Info: Applied preset 'General (Default)' to: newyearlogo.model.poly_mesh
+[STATUS] Finalizing materials, UVs and color attributes...
+Info: Successfully converted material 'material_atlas_00001_1_default' to default.sps
+Info: Set newyearlogo.models material material_atlas_00001_1_default textures to embedded.
+Info: Skipping object newyearlogo.model.poly_mesh because it does not have a sollumz shader active.
+Sollumz object types after conversion:
+  - newyearlogo.model: sollum_type=sollumz_drawable_model
+  - newyearlogo: sollum_type=sollumz_drawable
+  - newyearlogo.model.poly_mesh: sollum_type=sollumz_bound_poly_triangle
+  - newyearlogo.col: sollum_type=sollumz_bound_composite
+  - newyearlogo.model.bvh: sollum_type=sollumz_bound_geometrybvh
+Renaming drawable model 'newyearlogo.model' to 'newyearlogo.model'
+Renaming drawable 'newyearlogo' to 'newyearlogo'
+[STATUS] Exporting assets with Sollumz...
+Calling Sollumz export_assets with Sollumz's own selection.
+INFO: Starting export...
+INFO: Successfully exported 'newyearlogo'
+INFO: Exported in 0.204 seconds
+Info: Starting export...
+Info: Successfully exported 'newyearlogo'
+Info: Exported in 0.204 seconds
+[STATUS] Conversion completed.
+Unregistered 15 Material Combiner classes.
 
 Blender quit

@@ -18,6 +18,8 @@ https://youtu.be/TCPPDGbIWh0
 
 If the export fails, open **Blender** and follow these steps:
 
+Download the addon from here: https://github.com/Grim-es/material-combiner-addon
+
 1. Go to this panel:  
    ![Haaasib 3D](https://r2.fivemanage.com/ctqjlicI2ZX3DV1y4jRyb/test.png)
 

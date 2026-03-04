@@ -856,7 +856,7 @@
 
       const statusInterval = setInterval(async () => {
         try {
-          const res = await fetch("http://localhost:8000/status");
+          const res = await fetch("http://localhost:8080/status");
           if (res.ok) {
             const data = await res.json();
             if (data.status) {
@@ -880,7 +880,7 @@
             formData.append("scale_unit", $scaleUnit.val());
           }
 
-          const response = await fetch(`http://localhost:8000/convert?output_type=${outputType}`, {
+          const response = await fetch(`http://localhost:8080/convert?output_type=${outputType}`, {
             method: "POST",
             body: formData,
           });

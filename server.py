@@ -196,10 +196,10 @@ lua54 'yes'
 
 
 if __name__ == "__main__":
-    url = "http://127.0.0.1:8000"
+    url = "http://localhost:8080"
     try:
         webbrowser.open(url)
     except Exception:
         pass
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    uvicorn.run(app, host="localhost", port=8080)
 

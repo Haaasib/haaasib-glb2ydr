@@ -2,6 +2,17 @@
 
 ### GLB / GLTF → YDR (FiveM)
 
+### Screenshot
+
+![Haaasib 3D Converter UI](https://r2.fivemanage.com/ctqjlicI2ZX3DV1y4jRyb/Screenshot_1.png)
+
+---
+
+### Installation & Usage Video
+
+Watch the full installation and usage guide here:  
+[https://youtu.be/TCPPDGbIWh0](https://youtu.be/TCPPDGbIWh0)
+
 ---
 
 ## Requirements
